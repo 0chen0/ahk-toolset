@@ -26,8 +26,6 @@ ExitApp  ; Do a true exit.
 	return
 ~LButton & F1::
 ~LCtrl & XButton2::
-~LCtrl & CapsLock::
-~LShift & CapsLock::
 	IfWinActive, ahk_id %MarkWin_1% 
 	{
 		WinHide, ahk_id %MarkWin_1%

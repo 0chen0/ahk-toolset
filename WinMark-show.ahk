@@ -31,9 +31,7 @@ CapsLock & S::
 		}
 		WinGet, MakrWin_B, ID, A
 		return
-; ~LShift & CapsLock::
-; ~LCtrl & CapsLock::
-~LAlt & CapsLock::
+~LShift & CapsLock::
 		WinGet, cur_win, ID, A
 		if (cur_win != MakrWin_B)
 		{

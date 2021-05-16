@@ -1,7 +1,7 @@
 ; 文件编码用 ANSI 编码, 否则中文会有乱码
 
 ; 编译用指令
-; "F:\0\tool\ahk-toolset\compile\Compiler\Ahk2Exe.exe" /in "F:\0\tool\ahk-toolset\main.ahk" /out "F:\0\tool\ahk-toolset\compile\build\ahk-toolset.exe" /icon "F:\0\tool\ahk-toolset\compile\czh.ico"
+; "D:\Tools\ahk-toolset\compile\Compiler\Ahk2Exe.exe" /in "D:\Tools\ahk-toolset\main.ahk" /out "D:\Tools\ahk-toolset\compile\build\ahk-toolset.exe" /icon "D:\Tools\ahk-toolset\compile\czh.ico"
 
 ; 工具所在文件夹, 这里要设置环境变量"MyCustomization"为"F:\0"
 ; EnvGet, CurPath, MyCustomization
