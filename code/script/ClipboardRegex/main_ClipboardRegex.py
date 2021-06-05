@@ -7,7 +7,7 @@ def main():
 	num = sys.argv[1]
 
 	toolsetRoot = os.environ.get('toolsetRoot')
-	file_name = toolsetRoot + "\\script\\ClipboardRegex\\clipboard.txt"
+	file_name = toolsetRoot + "\\code\\script\\ClipboardRegex\\clipboard.txt"
 
 	if num == '1':
 		tag = "@@@@"

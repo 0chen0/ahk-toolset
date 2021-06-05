@@ -1,6 +1,6 @@
 
 CapsLock & V::
-	filename = %A_ScriptDir%\..\..\script\ClipboardRegex\clipboard.txt
+	filename = %A_ScriptDir%\..\..\code\script\ClipboardRegex\clipboard.txt
 	
 	wfd := FileOpen(filename, "w")
 	string := clipboard
@@ -10,7 +10,7 @@ CapsLock & V::
 	InputBox, OutputVar, |  ÎÄ±¾Ìæ»»  |, , , 320, 97, 700, 500
 	commands=
 	(join&
-		python "%A_ScriptDir%\..\..\script\ClipboardRegex\main_ClipboardRegex.py" "%OutputVar%"`n
+		python "%A_ScriptDir%\..\..\code\script\ClipboardRegex\main_ClipboardRegex.py" "%OutputVar%"`n
 	)
 	RunWait, cmd /c %commands%  
 	

@@ -7,7 +7,7 @@ SetWorkingDir %A_ScriptDir%
 
 #Include config.ahk
 #Include WinMark-hide.ahk
-#Include WinMark-show.ahk
+#Include WinMark-switch.ahk
 #Include ClipboardRegex.ahk
 
 ; =================ÆÁ±Î¼ü
@@ -34,7 +34,7 @@ CapsLock & LWin::
 		SEARCH := RegExReplace(SEARCH, " c:", " created:")
 		if (Strlen(SEARCH) != 0)
 		{
-		  run "%Evernote%\ENScript.exe" showNotes /q "%SEARCH%"
+		  run "%Evernote%" showNotes /q "%SEARCH%"
 		}
 		return
 
@@ -45,7 +45,7 @@ CapsLock & LWin::
 		{
 			commands=
 			(join&
-			 python "%A_ScriptDir%\..\..\script\QuickCmd\main_QuickCmd.py" "%OutputVar%"`n
+			 python "%A_ScriptDir%\..\..\code\script\QuickCmd\main_QuickCmd.py" "%OutputVar%"`n
 			)
 			Run, cmd /c %commands%  
 			return
@@ -56,7 +56,7 @@ CapsLock & LWin::
 ~LAlt & F1::
 		; EnvGet, tmpLOCALAPPDATA, LOCALAPPDATA
 		; run "%tmpLOCALAPPDATA%\Microsoft\WindowsApps\Snipaste.exe" snip -o pin
-		run "%Snipaste%\Snipaste.exe" snip -o pin
+		run "%Snipaste%" snip -o pin
 		return
 		
 ; =================¹Ø±Õ´°¿Ú
@@ -86,7 +86,7 @@ CapsLock & LWin::
 		
 ; =================´ò¿ª¹È¸èä¯ÀÀÆ÷
 !Enter::
-		run "%Chrome%\chrome.exe",,nID
+		run "%Chrome%",,nID
 		WinWait, ahk_pid %nID%, , 2
 ;		;		#WinActivateForce
 ;		;		WinActivate

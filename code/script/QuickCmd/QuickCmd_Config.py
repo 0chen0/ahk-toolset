@@ -5,7 +5,7 @@ config = {
 	, "quick_open" : [		# 快捷搜索的目录集合, 先搜
 		"F:\\0\\User\\快捷打开"
 	]
-	, "my_note" : [		# 笔记目录, 后搜
+	, "my_note" : [		# 笔记目录, 后搜, 用Notepad++只读打开
 		"F:\\0\\User\\Save\\笔记"
 	]
 }

@@ -22,38 +22,37 @@ def main():
 
 	handle_map(argv[0])
 
-	# --@# 打开目录列表设置
+	# # --@# 打开目录列表设置
+	# if argv[0]=="#list":
+	# 	open_dir(GetRoot() + "\\User\\快捷打开")
+	# 	exit()
 	if argv[0]=="#config":
-		open_file_with_Notepadplusplus(GetRoot()+"\\User\\快捷打开目录列表.txt")
-		exit()
-	elif argv[0]=="#list":
-		open_dir(GetRoot() + "\\User\\快捷打开")
+		open_file_with_Notepadplusplus(GetRoot()+"\\code\\script\\QuickCmd\\QuickCmd_Config.py")
 		exit()
 
-	# --@# 新建Docker容器项目
-	if argv[0]=="docker-new":
-		runCmd(GetRoot() + "\\script\\@在docker容器中新建项目.bat" + " " + argv[1])
-		exit()
-	elif argv[0]=="docker-rm":
-		dockerlnk = "F:\\docker-share\\" + argv[1]
-		dockerdir = "F:\\VSCode-Docker-Proj\\" + argv[1]
-		if os.path.exists(dockerlnk):
-			os.remove("F:\\docker-share\\" + argv[1])
-		if os.path.exists(dockerdir):			
-			shutil.rmtree(dockerdir)
-		exit()
+	# # --@# 新建Docker容器项目
+	# if argv[0]=="docker-new":
+	# 	runCmd(GetRoot() + "\\script\\@在docker容器中新建项目.bat" + " " + argv[1])
+	# 	exit()
+	# elif argv[0]=="docker-rm":
+	# 	dockerlnk = "F:\\docker-share\\" + argv[1]
+	# 	dockerdir = "F:\\VSCode-Docker-Proj\\" + argv[1]
+	# 	if os.path.exists(dockerlnk):
+	# 		os.remove("F:\\docker-share\\" + argv[1])
+	# 	if os.path.exists(dockerdir):			
+	# 		shutil.rmtree(dockerdir)
+	# 	exit()
 
-
-	# --@# 常用文本
-	if argv[0]=="j":
-		open_file_with_Notepadplusplus("F:\\0\\software\\Notepad++\\Notepad++会话\\@#临时会话.nppSession", "")
-		exit()
-	elif argv[0]=="k":
-		runCmd(GetRoot() + "\\script\\@待办事项.bat")
-		exit()
-	elif argv[0]=="r":
-		open_file_with_Notepadplusplus(GetRoot() + "\\User\\阅读收藏.txt", "-n20000000")
-		exit()
+	# # --@# 常用文本
+	# if argv[0]=="j":
+	# 	open_file_with_Notepadplusplus("F:\\0\\software\\Notepad++\\Notepad++会话\\@#临时会话.nppSession", "")
+	# 	exit()
+	# elif argv[0]=="k":
+	# 	runCmd(GetRoot() + "\\script\\@待办事项.bat")
+	# 	exit()
+	# elif argv[0]=="r":
+	# 	open_file_with_Notepadplusplus(GetRoot() + "\\User\\阅读收藏.txt", "-n20000000")
+	# 	exit()
 
 	# --@# 快捷打开
 	type, path = search_traversal(argv[0], QuickCmd_Config.config["quick_open"])
@@ -108,7 +107,8 @@ def open_file_in_default_way(file_path):
 	# subprocess.call(["open", file])	#Mac
 
 def open_chrome():
-	runCmd("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe")
+	# runCmd("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe")
+	os.startfile(GetRoot() + "\\local\\chrome.exe - 快捷方式.lnk")
 
 def search_traversal(search_str, from_path_list):
 	pattern = ".*{}.*".format(search_str)
