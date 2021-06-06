@@ -9,6 +9,7 @@ SetWorkingDir %A_ScriptDir%
 #Include WinMark-hide.ahk
 #Include WinMark-switch.ahk
 #Include ClipboardRegex.ahk
+#Include Mouse.ahk
 
 ; =================屏蔽键
 CapsLock::
@@ -58,32 +59,7 @@ CapsLock & LWin::
 		; run "%tmpLOCALAPPDATA%\Microsoft\WindowsApps\Snipaste.exe" snip -o pin
 		run "%Snipaste%" snip -o pin
 		return
-		
-; =================关闭窗口
-~LButton & XButton1::
-!L::
-		WinGetTitle, cur_title, A
-		If (!cur_title) {
-			return
-		}
-		WinGet, pName, ProcessName, A
-		If (pName=="devenv.exe" || pName=="SumatraPDF-no-MUPDF.exe" || pName=="QQ.exe")
-		{
-			return
-		}
-		If (pName == "chrome.exe" || pName == "firefox.exe" || pName == "Code.exe")
-		{
-			Send, ^w
-			return
-		}
-		If (pName == "notepad++.exe")
-		{
-			WinMenuSelectItem, A, , 文件(F), 关闭(C)
-			return
-		}
-		WinClose, A
-		return
-		
+				
 ; =================打开谷歌浏览器
 !Enter::
 		run "%Chrome%",,nID
