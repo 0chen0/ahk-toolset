@@ -1,8 +1,8 @@
 ; 文件编码用 ANSI 编码, 否则中文会有乱码???
 
 ; #NoEnv
-#WinActivateForce
 #SingleInstance, Force
+#WinActivateForce
 SetWorkingDir %A_ScriptDir%
 
 #Include config.ahk
@@ -15,8 +15,8 @@ SetWorkingDir %A_ScriptDir%
 CapsLock::
 Insert::
 LWin::
-; ~LCtrl & CapsLock:: 
-; ~LAlt & CapsLock::
+~LCtrl & CapsLock:: 
+~LAlt & CapsLock::
 CapsLock & LCtrl::
 CapsLock & LAlt::
 CapsLock & LShift::
@@ -61,7 +61,7 @@ CapsLock & LWin::
 		return
 				
 ; =================打开谷歌浏览器
-!Enter::
+<!NumpadEnter::
 		run "%Chrome%",,nID
 		WinWait, ahk_pid %nID%, , 2
 ;		;		#WinActivateForce

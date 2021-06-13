@@ -1,112 +1,178 @@
 
 ; =================窗口间跳转(非隐藏)
-; ; --A
-; ~LButton & XButton2::
-; 		WinGetTitle, cur_title, A
-; 		If (!cur_title)
-; 		{
-; 			return
-; 		}
-; 		WinGet, MakrWin_A, ID, A
-; 		return
-; XButton2::
-; 		WinGet, cur_win, ID, A
-; 		if (cur_win != MakrWin_A)
-; 		{
-; 			WinGetTitle, cur_title, A
-; 			If (cur_title) {
-; 				MarkWin_Tmp_A = %cur_win%
-; 			}
-; 			WinActivate, ahk_id %MakrWin_A%
-; 		} Else {
-; 			WinActivate, ahk_id %MarkWin_Tmp_A%
-; 		}
-; 		return
 
-; 新建并切换组(作清空用途)
-CapsLock & NumpadSub::
-		MarkWinList_A := A_Now
-		return
+; A ----------------------------------------------------------
+; 清空组
+<^<#<!A::
+		MarkWinList_A := "MarkWinList_A_" . A_Now
+		Return
+
 ; 添加窗口到组中
-CapsLock & NumpadAdd::
+CapsLock & A::
 		WinGetTitle, cur_title, A
-		If (!cur_title)
+		If (cur_title)
 		{
-			return
+			If (!MarkWinList_A)
+			{
+				MarkWinList_A := "MarkWinList_A_" . A_Now
+			}
+			WinGet, cur_win, ID, A
+			GroupAdd, %MarkWinList_A%, ahk_id %cur_win%
 		}
-		WinGet, active_id, ID, A
-		GroupAdd, %MarkWinList_A%, ahk_id %active_id%
-		return
-; 组窗口切换
-F23::
-		GroupActivate, %MarkWinList_A%
-		return
+		Return
 
+; 窗口切换
+F22::
+		IfWinActive, ahk_group %MarkWinList_A%
+		{
+			; 获取组中下一个窗口, 如果是skip窗口则跳转至tmp窗口
+			WinGet, next_win, IDLast, ahk_group %MarkWinList_A%
+			If(next_win == MakrWin_InPoint_A && WinExist("ahk_id" . MarkWin_Tmp_A))
+			{
+				WinActivate, ahk_id %MarkWin_Tmp_A%
+			} else {
+				GroupActivate, %MarkWinList_A%
+			}
+		} else {
+			WinGetTitle, cur_title, A
+			If (cur_title) {
+				WinGet, MarkWin_Tmp_A, ID, A
+			}
+			; 切换到组中第一个窗口
+			GroupActivate, %MarkWinList_A%
+			; 记下当前窗口为skip窗口
+			WinGet, MakrWin_InPoint_A, ID, ahk_group %MarkWinList_A%
+		}
+		Return
 
-; --B
+; S ----------------------------------------------------------
+; 清空组
+<^<#<!S::
+		MarkWinList_S := "MarkWinList_S_" . A_Now
+		Return
+
+; 添加窗口到组中
 CapsLock & S::
 		WinGetTitle, cur_title, A
-		If (!cur_title)
+		If (cur_title)
 		{
-			return
+			If (!MarkWinList_S)
+			{
+				MarkWinList_S := "MarkWinList_S_" . A_Now
+			}
+			WinGet, cur_win, ID, A
+			GroupAdd, %MarkWinList_S%, ahk_id %cur_win%
 		}
-		WinGet, MakrWin_B, ID, A
-		return
+		Return
+
+; 窗口切换
 ~LShift & CapsLock::
-		WinGet, cur_win, ID, A
-		if (cur_win != MakrWin_B)
+		IfWinActive, ahk_group %MarkWinList_S%
 		{
+			; 获取组中下一个窗口, 如果是skip窗口则跳转至tmp窗口
+			WinGet, next_win, IDLast, ahk_group %MarkWinList_S%
+			If(next_win == MakrWin_InPoint_S && WinExist("ahk_id" . MarkWin_Tmp_S))
+			{
+				WinActivate, ahk_id %MarkWin_Tmp_S%
+			} else {
+				GroupActivate, %MarkWinList_S%
+			}
+		} else {
 			WinGetTitle, cur_title, A
 			If (cur_title) {
-				MarkWin_Tmp_B = %cur_win%
+				WinGet, MarkWin_Tmp_S, ID, A
 			}
-			WinActivate, ahk_id %MakrWin_B%
-		} Else {
-			WinActivate, ahk_id %MarkWin_Tmp_B%
+			; 切换到组中第一个窗口
+			GroupActivate, %MarkWinList_S%
+			; 记下当前窗口为skip窗口
+			WinGet, MakrWin_InPoint_S, ID, ahk_group %MarkWinList_S%
 		}
-		return
-; --C
+		Return
+
+; W ----------------------------------------------------------
+; 清空组
+<^<#<!W::
+		MarkWinList_W := "MarkWinList_W_" . A_Now
+		Return
+
+; 添加窗口到组中
 CapsLock & W::
 		WinGetTitle, cur_title, A
-		If (!cur_title)
+		If (cur_title)
 		{
-			return
+			If (!MarkWinList_W)
+			{
+				MarkWinList_W := "MarkWinList_W_" . A_Now
+			}
+			WinGet, cur_win, ID, A
+			GroupAdd, %MarkWinList_W%, ahk_id %cur_win%
 		}
-		WinGet, MakrWin_C, ID, A
-		return
+		Return
+
+; 窗口切换
 CapsLock & Tab::
-		WinGet, cur_win, ID, A
-		if (cur_win != MakrWin_C)
+		IfWinActive, ahk_group %MarkWinList_W%
 		{
+			; 获取组中下一个窗口, 如果是skip窗口则跳转至tmp窗口
+			WinGet, next_win, IDLast, ahk_group %MarkWinList_W%
+			If(next_win == MakrWin_InPoint_W && WinExist("ahk_id" . MarkWin_Tmp_W))
+			{
+				WinActivate, ahk_id %MarkWin_Tmp_W%
+			} else {
+				GroupActivate, %MarkWinList_W%
+			}
+		} else {
 			WinGetTitle, cur_title, A
 			If (cur_title) {
-				MarkWin_Tmp_C = %cur_win%
+				WinGet, MarkWin_Tmp_W, ID, A
 			}
-			WinActivate, ahk_id %MakrWin_C%
-		} Else {
-			WinActivate, ahk_id %MarkWin_Tmp_C%
+			; 切换到组中第一个窗口
+			GroupActivate, %MarkWinList_W%
+			; 记下当前窗口为skip窗口
+			WinGet, MakrWin_InPoint_W, ID, ahk_group %MarkWinList_W%
 		}
-		return
-; --D
+		Return
+
+; X ----------------------------------------------------------
+; 清空组
+<^<#<!X::
+		MarkWinList_X := "MarkWinList_X_" . A_Now
+		Return
+
+; 添加窗口到组中
 CapsLock & X::
 		WinGetTitle, cur_title, A
-		If (!cur_title)
+		If (cur_title)
 		{
-			return
+			If (!MarkWinList_X)
+			{
+				MarkWinList_X := "MarkWinList_X_" . A_Now
+			}
+			WinGet, cur_win, ID, A
+			GroupAdd, %MarkWinList_X%, ahk_id %cur_win%
 		}
-		WinGet, MakrWin_D, ID, A
-		return
-~LWin & CapsLock::
-		WinGet, cur_win, ID, A
-		if (cur_win != MakrWin_D)
+		Return
+
+; 窗口切换
+LWin & CapsLock::
+		IfWinActive, ahk_group %MarkWinList_X%
 		{
+			; 获取组中下一个窗口, 如果是skip窗口则跳转至tmp窗口
+			WinGet, next_win, IDLast, ahk_group %MarkWinList_X%
+			If(next_win == MakrWin_InPoint_X && WinExist("ahk_id" . MarkWin_Tmp_X))
+			{
+				WinActivate, ahk_id %MarkWin_Tmp_X%
+			} else {
+				GroupActivate, %MarkWinList_X%
+			}
+		} else {
 			WinGetTitle, cur_title, A
 			If (cur_title) {
-				MarkWin_Tmp_D = %cur_win%
+				WinGet, MarkWin_Tmp_X, ID, A
 			}
-			WinActivate, ahk_id %MakrWin_D%
-		} Else {
-			WinActivate, ahk_id %MarkWin_Tmp_D%
+			; 切换到组中第一个窗口
+			GroupActivate, %MarkWinList_X%
+			; 记下当前窗口为skip窗口
+			WinGet, MakrWin_InPoint_X, ID, ahk_group %MarkWinList_X%
 		}
-		return
-
+		Return
