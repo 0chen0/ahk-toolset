@@ -25,7 +25,7 @@ ExitApp  ; Do a true exit.
 	MarkWin_1 = %cur_win%
 	return
 ~LButton & F1::
-~LCtrl & XButton2::
+F24 & LCtrl::
 	IfWinActive, ahk_id %MarkWin_1% 
 	{
 		WinHide, ahk_id %MarkWin_1%
@@ -53,7 +53,7 @@ ExitApp  ; Do a true exit.
 	MarkWin_2 = %cur_win%
 	return
 ~LButton & F2::
-~LShift & XButton2::
+F24 & LShift::
 	IfWinActive, ahk_id %MarkWin_2% 
 	{
 		WinHide, ahk_id %MarkWin_2%
@@ -81,7 +81,7 @@ ExitApp  ; Do a true exit.
 	MarkWin_3 = %cur_win%
 	return
 ~LButton & F3::
-~LAlt & XButton2::
+F24 & LAlt::
 	IfWinActive, ahk_id %MarkWin_3% 
 	{
 		WinHide, ahk_id %MarkWin_3%
@@ -109,7 +109,7 @@ ExitApp  ; Do a true exit.
 	MarkWin_4 = %cur_win%
 	return
 ~LButton & F4::
-~LWin & XButton2::
+F24 & LWin::
 	IfWinActive, ahk_id %MarkWin_4% 
 	{
 		WinHide, ahk_id %MarkWin_4%
@@ -137,7 +137,7 @@ ExitApp  ; Do a true exit.
 	MarkWin_5 = %cur_win%
 	return
 ~LButton & F5::
-CapsLock & XButton2::
+F24 & CapsLock::
 	IfWinActive, ahk_id %MarkWin_5% 
 	{
 		WinHide, ahk_id %MarkWin_5%

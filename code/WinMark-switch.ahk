@@ -1,27 +1,48 @@
 
 ; =================窗口间跳转(非隐藏)
-; --A
-~LButton & XButton2::
+; ; --A
+; ~LButton & XButton2::
+; 		WinGetTitle, cur_title, A
+; 		If (!cur_title)
+; 		{
+; 			return
+; 		}
+; 		WinGet, MakrWin_A, ID, A
+; 		return
+; XButton2::
+; 		WinGet, cur_win, ID, A
+; 		if (cur_win != MakrWin_A)
+; 		{
+; 			WinGetTitle, cur_title, A
+; 			If (cur_title) {
+; 				MarkWin_Tmp_A = %cur_win%
+; 			}
+; 			WinActivate, ahk_id %MakrWin_A%
+; 		} Else {
+; 			WinActivate, ahk_id %MarkWin_Tmp_A%
+; 		}
+; 		return
+
+; 新建并切换组(作清空用途)
+CapsLock & NumpadSub::
+		MarkWinList_A := A_Now
+		return
+; 添加窗口到组中
+CapsLock & NumpadAdd::
 		WinGetTitle, cur_title, A
 		If (!cur_title)
 		{
 			return
 		}
-		WinGet, MakrWin_A, ID, A
+		WinGet, active_id, ID, A
+		GroupAdd, %MarkWinList_A%, ahk_id %active_id%
 		return
-XButton2::
-		WinGet, cur_win, ID, A
-		if (cur_win != MakrWin_A)
-		{
-			WinGetTitle, cur_title, A
-			If (cur_title) {
-				MarkWin_Tmp_A = %cur_win%
-			}
-			WinActivate, ahk_id %MakrWin_A%
-		} Else {
-			WinActivate, ahk_id %MarkWin_Tmp_A%
-		}
+; 组窗口切换
+F23::
+		GroupActivate, %MarkWinList_A%
 		return
+
+
 ; --B
 CapsLock & S::
 		WinGetTitle, cur_title, A

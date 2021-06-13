@@ -1,20 +1,34 @@
 
 
-; XButton1 Up::
-XButton1 & LButton::
-	SendInput, {AltDown}{Left}{AltUp}
-	Return
-XButton1 & WheelDown::
+F24 & WheelDown::
 	Loop 3
 		Click WheelRight
 	Return
-XButton1 & WheelUp::
+F24 & WheelUp::
 	Loop 3
 		Click WheelLeft
 	Return
 
+; =================窗口置顶
+F24 & MButton::
+		WinGetTitle, cur_title, A
+		If (!cur_title) {
+			return
+		}
+		WinSet, AlwaysOnTop, Toggle, A
+		Return
+
+; =================窗口最小化
+F24 & LButton::
+		WinGetTitle, cur_title, A
+		If (!cur_title) {
+			return
+		}
+		WinMinimize, A
+		Return
+
 ; =================关闭窗口
-XButton1 & RButton::
+F24 & RButton::
 		WinGetTitle, cur_title, A
 		If (!cur_title) {
 			return
