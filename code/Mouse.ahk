@@ -36,7 +36,7 @@ F23 & MButton Up::
 		Return
 
 ; =================窗口最小化
-F23 & LButton Up::
+F23 & RButton Up::
 		WinGetTitle, cur_title, A
 		If (!cur_title) {
 			return
@@ -45,7 +45,7 @@ F23 & LButton Up::
 		Return
 
 ; =================关闭窗口
-F23 & RButton Up::
+F23 & LButton Up::
 		WinGetTitle, cur_title, A
 		If (!cur_title) {
 			return

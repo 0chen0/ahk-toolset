@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.autoGuessEncoding": true
+		, "[ahk]": {
+			"files.encoding": "gb2312"
+		}
+		, "[python]": {
+			"files.encoding": "utf8"
+		}
+	}
+}
